@@ -35,8 +35,7 @@
             camaraAbierta = false;
             cancelarCamara()
         }else{
-            modoUpload = true;
-            modoBoton = 'paso2'
+            
             abreGaleria()
         }
     }
@@ -45,8 +44,10 @@
         let input = document.createElement("input");
         input.type = "file";
         input.accept = "image/*";
-        input.capture = "environment";
+        // input.capture = "environment";
         input.onchange = function(event){
+            modoUpload = true;
+            modoBoton = 'paso2'
             let file = event.target.files[0];
             let reader = new FileReader();
             reader.onload = function(e){
@@ -408,7 +409,7 @@
             // console.log("Hacemos upLoad de foto y vamos a registro Exitoso ")
             
 
-
+            muestraLoading()
             const canvas = document.querySelector('#canvas')
             let img = await canvas.toBlob(async function(blob){
                 //////////////
@@ -452,10 +453,9 @@
     }
 
     function abrePhotobooth(str){
-        muestraLoading()
         setTimeout(() => {
             window.location.href = 'salida.html' + '?foto=' + str
-        }, 10000);
+        }, 5000);
     }
 
     function muestraLoading(){
