@@ -22,7 +22,7 @@
         let url = urlParams.get('foto');
         let path = "https://res.cloudinary.com/yellowhat/image/upload/";
         let imagen = document.getElementById('imagen');
-        imagen.src = url;
+        imagen.src = path + url;
     }
 
     function siguientePagina(){
