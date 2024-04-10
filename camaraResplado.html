@@ -36,7 +36,6 @@
             cancelarCamara()
         }else{
             modoUpload = true;
-            modoBoton = 'paso2'
             abreGaleria()
         }
     }
@@ -50,7 +49,7 @@
             let file = event.target.files[0];
             let reader = new FileReader();
             reader.onload = function(e){
-                /* Emilio Abril 2024
+                //let img = document.createElement("img");
                 let img = document.getElementById("imagen");
                 img.src = e.target.result;
                 img.className = "imagen";
@@ -58,36 +57,12 @@
                 let divImg = document.getElementById("divImagen")
                 divImg.appendChild(img);
                 divImg.classList.replace("hidden", "show");
-                */
-
-                if(document.querySelector("#canvas") != null){
-                    document.getElementById("divImagen").removeChild(document.querySelector("#canvas"));
-                }
-
-                let canvas = document.createElement("canvas");
-                canvas.className = "camaraSelfie";
-                canvas.id = "canvas";
-
-                // const video = document.querySelector('#video')
-                // canvas.width = video.videoWidth
-                // canvas.height = video.videoHeight
-                var image = new Image();
-                image.onload = function() {
-                    canvas.width = image.width
-                    canvas.height = image.height
-                    canvas.getContext('2d').drawImage(image, 0, 0)
-                    canvas.className  ="imagen"
-
-                    let divImg = document.getElementById("divImagen")
-                    divImg.appendChild(canvas);
-                    divImg.classList.replace("hidden", "show");
-                };
-                image.src = e.target.result;
-                
-                
 
                 let btn1 = document.querySelector("#btn1");
                 btn1.src = "enviar.png";
+
+                // let btn2 = document.querySelector("#btn2");
+                // btn2.src = "cancelar.png";
 
                 document.getElementById("logo").classList.replace("show", "hidden");
                 document.getElementById("header").classList.replace("hidden", "show");
