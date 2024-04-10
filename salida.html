@@ -20,7 +20,7 @@
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let url = urlParams.get('foto');
-        let path = "https://res.cloudinary.com/yellowhat/image/upload/";
+        let path = "https://res.cloudinary.com/yellowhat/image/upload/t_mg/";
         let imagen = document.getElementById('imagen');
         imagen.src = path + url;
     }
