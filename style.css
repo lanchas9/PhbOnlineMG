@@ -48,8 +48,8 @@ body{
 
 .video{
     width: 80%;
-    height: 70vh;
-    background-color: red;
+    height: 70%;
+    /* background-color: red; */
     margin-bottom: 20px;
 }
 
@@ -59,7 +59,7 @@ body{
     /* border: black 1px solid; */
     box-shadow: black 5px 5px 5px;
     margin-bottom: 20px;
-    background-color: green;
+    /* background-color: green; */
 }
 
 .loadingBox {
