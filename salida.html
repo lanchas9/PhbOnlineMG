@@ -15,6 +15,7 @@
         <a href="nada.jpg" download="" id="downloadIcon">
             <img src="descargar.png" alt="" srcset="" class="boton2">
         </a>
+        <img src="salir.png" alt="" srcset="" class="boton2" onclick="siguientePagina()">
     </div>
     
 <script>
@@ -23,13 +24,13 @@
         const urlParams = new URLSearchParams(queryString);
         let url = urlParams.get('foto');
         let path = "https://res.cloudinary.com/yellowhat/image/upload/t_mg/";
+        let preSet = "f_auto/fl_attachment/"
         let imagen = document.getElementById('imagen');
         imagen.src = path + url;
 
         let downloadIcon = document.getElementById('downloadIcon');
-        downloadIcon.href = path + url;
+        downloadIcon.href = path + preSet + url;
         downloadIcon.download = "foto.jpg";
-
     }
 
     function siguientePagina(){
