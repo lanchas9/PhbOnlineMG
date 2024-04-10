@@ -7,7 +7,7 @@
     <title>MG Photobooth</title>
 </head>
 <body>
-    <div class="centrado">
+    <div class="centrado" id="padre">
         <div id="header" class="hidden">
             <img src="logo.png" alt="" srcset="" class="logo2">
         </div>
@@ -204,18 +204,28 @@
     
     function showCam(streamLive) {
         stream = streamLive;
-        // let video = document.createElement("video");
-        // video.className = "camaraSelfie"
-        // video.setAttribute("autoplay", true);
-        // video.setAttribute("playsinline", true);
-        // video.srcObject = stream;
-        // document.getElementById("camara").appendChild(video);
-        // video.height = video.scrollWidth * 1.33
-        //video.scrollWidth = video.scrollHeight
+        //Cambio Abril 2024 por emilio
+        
+        if(document.querySelector("#video") == null){
+            let video = document.createElement("video");
+            video.className = "camaraSelfie"
+            video.setAttribute("autoplay", true);
+            video.setAttribute("playsinline", true);
+            video.srcObject = stream;
+            document.getElementById("camara").appendChild(video);
+            video.height = video.scrollWidth * 1.33
+            video.scrollWidth = video.scrollHeight
+            video.srcObject = stream;
+        }else{
+            video.srcObject = stream;
+        }
 
-        let video = document.querySelector("#video");
-        video.setAttribute("playsinline", true);
-        video.srcObject = stream;
+
+        
+
+        // let video = document.querySelector("#video");
+        // video.setAttribute("playsinline", true);
+        
         // video.height = video.scrollWidth * 1.33
         //video.scrollWidth = video.scrollHeight
 
@@ -285,6 +295,9 @@
             document.getElementById("camara").appendChild(canvas);
             modoBoton = 'paso2'
 
+            let btn1 = document.querySelector("#btn1");
+            btn1.src = "enviar.png";
+            // btn1.onclick = function(){guardarFoto()};
 
             //-----------------BOTONES INICIO ABRIL 2024
             // let btn1 = document.createElement("img");
@@ -315,7 +328,10 @@
 
             // let btn4 = document.querySelector("#guardaFoto");
             // btn4.classList.replace("hidden", "show");
+
+
         }else{
+            /*
             const canvas = document.querySelector('#canvas')
             // const video = document.querySelector('#video')
 
@@ -347,6 +363,8 @@
             // video.className = "camaraSelfie visibleCanvas"
             //cargaResultados()
             modoBoton = 'paso1'
+            */
+           guardarFoto()
         }
     }
 
@@ -356,20 +374,8 @@
         }else{
             modoBoton = 'paso1'
             // console.log("Hacemos upLoad de foto y vamos a registro Exitoso ")
-            let respuesta
-            let text
-            do{
-                respuesta = prompt("Comparte con nosostros lo que significan estos 80 años para ti (mensaje no puede estar vacio o demasiado corto)", "");
-                text;
-                if (respuesta == null || respuesta == "" || respuesta.length < 9 ) {
-                    text = "";
-                } else {
-                    text = respuesta;
-                }
-            }while(text == "")
-            
             const canvas = document.querySelector('#canvas')
-            let img = await canvas.toBlob(function(blob){
+            let img = await canvas.toBlob(async function(blob){
                 //////////////
                 const formData = new FormData();
                 let resul = {
@@ -385,29 +391,35 @@
                     method: 'POST',
                     body: formData
                 };
-
-                text = encodeURI(text)
-
-                fetch(`https://mosaico.app:4000/silanes/uploadSelfie?texto=`+text, options).then(r => r.json()).then(data => {
-                    //Your logic, in my case I get JSON from server
+                try {
+                    let r = await fetch("https://mosaico.app:10801/upload", options)
+                    if(!r.ok){
+                        resul.statusCode = r.status
+                        resul.message = r.statusText
+                    }
+                    let data = await r.json()
+                        //Your logic, in my case I get JSON from server
                     if(data.statusCode == 200){
                         resul.error = false
                         resul.statusCode = data.statusCode
                         resul.message = data.message
-                        abrePhotobooth()
+                        abrePhotobooth(resul.message[0].filename)
                     }else{                        
                         resul.statusCode = data.statusCode
                         resul.message = data.message
-                    }
-                });
+                    }   
+                } catch (error) {
+                    console.log("Error : " + error)
+                }
+                
             },'image/jpeg', 0.95)            
         }
     }
 
-    function abrePhotobooth(){
+    function abrePhotobooth(str){
         muestraLoading()
         setTimeout(() => {
-            window.location.href = 'salida.html'
+            window.location.href = 'salida.html' + '?foto=' + str
         }, 10000);
     }
 
@@ -424,7 +436,7 @@
         divNuevo.className = "loadingBox"
 
         let loadingNuevo = document.createElement("img")
-        loadingNuevo.src = "img/loading.gif"
+        loadingNuevo.src = "loading.gif"
         loadingNuevo.className = "loadingAnimation"
 
         // loadingNuevo.style.width = document.getElementById("camara").width

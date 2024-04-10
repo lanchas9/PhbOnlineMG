@@ -6,18 +6,27 @@
     <link rel="stylesheet" href="style.css">
     <title>MG Photobooth</title>
 </head>
-<body>
+<body onload="muestraFoto()">
     <div class="centrado">
         <div id="camara" class="camara">
             <img src="logo.png" alt="" srcset="" class="logo2">
         </div>
-        <img src="https://res.cloudinary.com/yellowhat/image/upload/v1711758096/YellowHatMX/1711758096337.jpg" alt="" srcset="" class="imagen">
+        <img src="" alt="" srcset="" class="imagen" id="imagen">
         <img src="descargar.png" alt="" srcset="" class="boton2" onclick="siguientePagina()">
     </div>
     
 <script>
+    function muestraFoto(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let url = urlParams.get('foto');
+        let path = "https://res.cloudinary.com/yellowhat/image/upload/";
+        let imagen = document.getElementById('imagen');
+        imagen.src = url;
+    }
+
     function siguientePagina(){
-        window.location.href = "camara.html";
+        window.location.href = "https://mgmotor.com.mx";
     }
 </script>
 </body>
