@@ -12,7 +12,9 @@
             <img src="logo.png" alt="" srcset="" class="logo2">
         </div>
         <img src="" alt="" srcset="" class="imagen" id="imagen">
-        <img src="descargar.png" alt="" srcset="" class="boton2" onclick="siguientePagina()">
+        <a href="nada.jpg" download="" id="downloadIcon">
+            <img src="descargar.png" alt="" srcset="" class="boton2">
+        </a>
     </div>
     
 <script>
@@ -23,6 +25,10 @@
         let path = "https://res.cloudinary.com/yellowhat/image/upload/t_mg/";
         let imagen = document.getElementById('imagen');
         imagen.src = path + url;
+
+        let downloadIcon = document.getElementById('downloadIcon');
+        downloadIcon.href = path + url;
+        
     }
 
     function siguientePagina(){
