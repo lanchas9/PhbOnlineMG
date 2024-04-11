@@ -20,8 +20,8 @@
         <div id="divImagen" class="hidden">
             <img id="imagen" src="" alt="" srcset="">
         </div>
-        <img src="camaraSelfie.png" alt="" srcset="" class="boton2" onclick="boton1presionado()" id="btn1">
-        <img src="camaraTrasera.png" alt="" srcset="" class="boton2" onclick="boton2presionado()" id="btn2">
+        <img src="abreCamara.png" alt="" srcset="" class="boton2" onclick="boton1presionado()" id="btn1">
+        <img src="abreGaleria.png" alt="" srcset="" class="boton2" onclick="boton2presionado()" id="btn2">
     </div>
     
 <script>
@@ -30,17 +30,16 @@
     let stream = null;
     let modoUpload = false;
 
-    // async function boton2presionado(){
-    //     if (camaraAbierta){
-    //         window.location.href = 'camara.html'
-    //         camaraAbierta = false;
-    //         cancelarCamara()
-    //     }else{
+    async function boton2presionado(){
+        if (camaraAbierta){
+            window.location.href = 'camara.html'
+            camaraAbierta = false;
+            cancelarCamara()
+        }else{
             
-    //         abreGaleria()
-    //     }
-    // }
-
+            abreGaleria()
+        }
+    }
 
     async function abreGaleria(){
         let input = document.createElement("input");
@@ -102,10 +101,10 @@
 
     async function cancelarCamara(){
         let btn1 = document.querySelector("#btn1");
-        btn1.src = "camaraSelfie.png";
+        btn1.src = "abreCamara.png";
 
         let btn2 = document.querySelector("#btn2");
-        btn2.src = "cameraTrasera.png";
+        btn2.src = "abreGaleria.png";
 
         document.getElementById("logo").classList.replace("hidden", "show");
         document.getElementById("camara").classList.replace("show", "hidden");
@@ -113,28 +112,15 @@
     }
 
     async function boton1presionado(){
-        if (camaraAbierta){
-            window.location.href = 'camara.html'
-            camaraAbierta = false;
-            cancelarCamara()
+        if(modoUpload){
+            guardarFoto()
         }else{
-            let tipoCamara = "user"
-            abreCamara(tipoCamara)
-        }   
-    }
-
-    async function boton2presionado(){
-        if (camaraAbierta){
-            window.location.href = 'camara.html'
-            camaraAbierta = false;
-            cancelarCamara()
-        }else{
-            let tipoCamara = "environment"
-            abreCamara(tipoCamara)
+            abreCamara()
         }
+        
     }
 
-    async function abreCamara(tipoCamara){
+    async function abreCamara(){
         const supported = navigator.mediaDevices.getSupportedConstraints();
         if(!camaraAbierta){
             camaraAbierta = true;
@@ -152,7 +138,7 @@
                         ideal:  1280,
                         max: 1920,
                     },
-                    facingMode: tipoCamara
+                    facingMode: 'user'
                     , video: true
                     },
                 }
@@ -169,7 +155,7 @@
                         ideal:  720,
                         max: 1080,
                     },
-                    facingMode: tipoCamara
+                    facingMode: 'user'
                     , video: true
                     },
                 }
@@ -186,7 +172,7 @@
                         ideal:  1280,
                         max: 1920,
                     },
-                    facingMode: tipoCamara
+                    facingMode: 'user'
                     , video: true
                     },
                 }
