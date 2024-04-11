@@ -113,8 +113,10 @@
     }
 
     async function boton1presionado(){
-        if(modoUpload){
-            guardarFoto()
+        if (camaraAbierta){
+            window.location.href = 'camara.html'
+            camaraAbierta = false;
+            cancelarCamara()
         }else{
             let tipoCamara = "user"
             abreCamara(tipoCamara)
@@ -122,8 +124,10 @@
     }
 
     async function boton2presionado(){
-        if(modoUpload){
-            guardarFoto()
+        if (camaraAbierta){
+            window.location.href = 'camara.html'
+            camaraAbierta = false;
+            cancelarCamara()
         }else{
             let tipoCamara = "environment"
             abreCamara(tipoCamara)
