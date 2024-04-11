@@ -114,9 +114,7 @@
 
     async function boton1presionado(){
         if (camaraAbierta){
-            window.location.href = 'camara.html'
-            camaraAbierta = false;
-            cancelarCamara()
+            tomaFoto()
         }else{
             let tipoCamara = "user"
             abreCamara(tipoCamara)
