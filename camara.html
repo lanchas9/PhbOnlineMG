@@ -262,11 +262,21 @@
             video.height = video.scrollWidth * 1.33
             video.scrollWidth = video.scrollHeight
             video.srcObject = stream;
+            video.poster = "MG_over.png";
+            console.log("ya pusimos el poster al tag de video")
         }else{
+            let video = document.querySelector("#video");
             video.srcObject = stream;
         }
-
-
+        // let video = document.querySelector("#video");
+        // let divCamara = document.getElementById("camara");
+        // let img = document.createElement("img");
+        // img.src = "overPrueba.png";
+        // img.width = video.scrollWidth;
+        // img.height = video.scrollHeight;
+        // console.log("Ancho : " + divCamara.scrollWidth + " Alto : " + divCamara.scrollHeight)
+        // divCamara.appendChild(img);
+        // console.log("ya pusimos el poster al div de la camara")
         
 
         // let video = document.querySelector("#video");
@@ -441,7 +451,8 @@
                     body: formData
                 };
                 try {
-                    let r = await fetch("https://mosaico.app:10801/upload", options)
+                    let url = "https://mosaico.app:10801/upload" + '?folder=mg'
+                    let r = await fetch(url, options)
                     if(!r.ok){
                         resul.statusCode = r.status
                         resul.message = r.statusText
