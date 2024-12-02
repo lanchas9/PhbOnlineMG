@@ -451,7 +451,7 @@
                     body: formData
                 };
                 try {
-                    let url = "https://mosaico.app:10801/upload" + '?folder=mg'
+                    let url = "https://mosaico.app:10801/uploadAI" + '?folder=mg'
                     let r = await fetch(url, options)
                     if(!r.ok){
                         resul.statusCode = r.status
@@ -477,9 +477,9 @@
     }
 
     function abrePhotobooth(str){
-        setTimeout(() => {
+        // setTimeout(() => {
             window.location.href = 'salida.html' + '?foto=' + str
-        }, 5000);
+        // }, 5000);
     }
 
     function muestraLoading(){
