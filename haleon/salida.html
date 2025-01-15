@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+</head>
+<body onload="muestraFoto()">
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+        </div>
+        <img src="" alt="" srcset="" class="imagen" id="imagen">
+        <a href="nada.jpg" download="" id="downloadIcon">
+            <img src="descargar.png" alt="" srcset="" class="boton2">
+        </a>
+        <img src="repetir.png" alt="" srcset="" class="boton2" onclick="siguientePagina()">
+    </div>
+    
+<script>
+    function muestraFoto(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let url = urlParams.get('foto');
+        // let path = "https://res.cloudinary.com/yellowhat/image/upload/t_mg/";
+        // let preSet = "f_auto/fl_attachment/"
+        let path = "https://mosaico.app:4433/www/haelon/";
+        let imagen = document.getElementById('imagen');
+        imagen.src = path + url;
+
+        let downloadIcon = document.getElementById('downloadIcon');
+        // downloadIcon.href = path + preSet + url;
+        downloadIcon.href = path + url;
+        downloadIcon.download = "foto.jpg";
+    }
+
+    function siguientePagina(){
+        window.location.href = "camara.html";
+    }
+</script>
+</body>
+</html>

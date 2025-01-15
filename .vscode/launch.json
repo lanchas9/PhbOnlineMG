@@ -7,6 +7,12 @@
             "request": "launch",
             "url": "http://127.0.0.1:5500/index.html",
             "webRoot": "${workspaceFolder}/"
+        },{
+            "name": "Haleon",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://127.0.0.1:5500/haleon/index.html",
+            "webRoot": "${workspaceFolder}/"
         },
     ]
 }

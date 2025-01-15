@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+</head>
+<body>
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+            <div class="titulo">INSTRUCCIONES</div>
+            <div class="texto">
+                Bienvenido al micrositio del evento HALEON. <br> <br> 
+                A continuación te vamos a pedir que te tomes una fotografía que servirá como tu identificación para el evento. <br><br> 
+                Te pedimos que sea una fotografía con buena iluminación y con fondo blanco, 
+                asi nuestra plataforma usará <b>INTELIGENCIA ARTIFICIAL</b> para generar tu <b>AVATAR</b>. <br><br> 
+                También puedes pedir que te tomen una fotografía usando la cámara trasera de tu dispositivo.<br> <br> 
+            </div>
+
+        </div>
+        <img src="continuar.png" alt="" srcset="" class="boton" onclick="siguientePagina()">
+    </div>
+    
+<script>
+    function siguientePagina(){
+        window.location.href = "camara.html";
+    }
+</script>
+</body>
+</html>
