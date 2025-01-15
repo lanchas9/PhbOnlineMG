@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+</head>
+<body>
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+            <div class="titulo">REGISTRO</div>
+            <div class="texto">Completa los campos solicitados:</div>
+            <div class="textoFormulario">
+                <label>Nombre Completo:</label><br>
+                <input type="text" id="nombre" name="nombre" class="inputLabel" required>
+                <br><br>
+                <label>Correo Electrónico:</label><br>
+                <input type="email" id="email" name="email" class="inputLabel" required>
+                <br><br>
+            </div>
+            <img src="guardar.png" alt="" class="boton" onclick="guardarDatos()">
+        </div>
+        <!-- <img src="continuar.png" alt="" srcset="" class="boton" onclick="siguientePagina()"> -->
+    </div>
+    
+<script>
+    function guardarDatos(){
+        var nombre = document.getElementById("nombre").value;
+        var email = document.getElementById("email").value;
+        if (nombre === "" || nombre.length < 5) {
+            alert("El nombre no puede estar vacío y debe tener al menos 5 caracteres.");
+            return;
+        }
+        
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+            alert("Por favor, introduce un correo electrónico válido.");
+            return;
+        }
+        alert("Datos con formato correcto");
+        guardarEnServerAPI(nombre, email);
+    }
+
+    function guardarEnServerAPI(nombre, email){
+        let data = {
+            nombre: nombre,
+            email: email
+        };
+        fetch('https://mosaico.app:10801/registro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            if(data.id === undefined){
+                alert("Error al guardar los datos en el servidor.");
+                return;
+            }
+            let id = data.id;
+            siguientePagina(id);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert("Error al guardar los datos en el servidor.");
+            window.location.href = "registro.html";
+        });
+    }
+
+    function siguientePagina(id){
+        window.location.href = "camara.html?id=" + id;
+    }
+</script>
+</body>
+</html>
