@@ -19,11 +19,12 @@
     </div>
     
 <script>
+    let id = "";
     async function muestraFoto(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let url = urlParams.get('foto');
-        let id = urlParams.get('id');
+        id = urlParams.get('id');
         // let path = "https://res.cloudinary.com/yellowhat/image/upload/t_mg/";
         // let preSet = "f_auto/fl_attachment/"
         
