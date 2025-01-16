@@ -125,7 +125,7 @@
 
     async function boton2presionado(){
         if (camaraAbierta){
-            window.location.href = 'camara.html'
+            window.location.href = 'camara.html?id=' + id
             camaraAbierta = false;
             cancelarCamara()
         }else{

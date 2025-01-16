@@ -39,7 +39,7 @@
             alert("Por favor, introduce un correo electrónico válido.");
             return;
         }
-        alert("Datos con formato correcto");
+        console.log("Datos con formato correcto");
         guardarEnServerAPI(nombre, email);
     }
 
@@ -56,7 +56,8 @@
             body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(data => {
+        .then(responseJSON => {
+            let data = responseJSON.data;
             console.log('Success:', data);
             if(data.id === undefined){
                 alert("Error al guardar los datos en el servidor.");
