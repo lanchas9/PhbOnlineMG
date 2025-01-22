@@ -18,14 +18,14 @@
             <div class="titulo">REGISTRO</div>
             <div class="texto">Completa los campos solicitados:</div>
             <div class="textoFormulario">
-                <label>Nombre completo con apellidos:</label><br>
+                <label>Nombre completo:</label><br>
                 <input type="text" id="nombre" name="nombre" class="inputLabel" required>
                 <br><br>
-                <label>Correo electrónico de HAlEON:</label><br>
+                <label>Correo electrónico:</label><br>
                 <input type="email" id="email" name="email" class="inputLabel" required>
-                <br><br>
-                <label>Puesto de trabajo en HAlEON:</label><br>
-                <input type="text" id="puesto" name="puesto" class="inputLabel" required>
+                <!-- <br><br>
+                <label>Puesto de trabajo en HALEON:</label><br>
+                <input type="text" id="puesto" name="puesto" class="inputLabel" required> -->
                 <br><br>
             </div>
             <img src="guardar.png" alt="" class="boton" onclick="guardarDatos()">
@@ -37,12 +37,12 @@
     function guardarDatos(){
         var nombre = document.getElementById("nombre").value;
         var email = document.getElementById("email").value;
-        var puesto = document.getElementById("puesto").value;
+        var puesto = "";//document.getElementById("puesto").value;
 
-        if (puesto === "" || puesto.length < 5) {
-            alert("El puesto no puede estar vacío y debe tener al menos 5 caracteres.");
-            return;
-        }
+        // if (puesto === "" || puesto.length < 5) {
+        //     alert("El puesto no puede estar vacío y debe tener al menos 5 caracteres.");
+        //     return;
+        // }
 
         if (nombre === "" || nombre.length < 5) {
             alert("El nombre no puede estar vacío y debe tener al menos 5 caracteres.");
