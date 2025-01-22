@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+            <div class="titulo">SELECCIONA GÉNERO</div>
+            <div class="ancho90">
+                <img class="ancho45" src="hombre.png" alt="" srcset="" class="boton" onclick="setGeneroHombre()" id="hombre">
+                <img class="ancho45" src="mujer.png" alt="" srcset="" class="boton" onclick="setGeneroMujer()" id="mujer">
+            </div>
+        </div>
+        <img src="continuar.png" alt="" srcset="" class="boton" onclick="siguientePagina()">
+    </div>
+    
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    id = urlParams.get('id');
+    let genero = "";
+    function setGeneroHombre(){
+        genero = "hombre";
+        console.log("Género seleccionado: " + genero);
+        let mujer = document.getElementById("mujer");
+        mujer.classList.remove("seleccionadoMujer");
+
+        let hombre = document.getElementById("hombre");
+        hombre.classList.add("seleccionadoHombre");
+    }
+
+    function setGeneroMujer(){
+        genero = "mujer";
+        console.log("Género seleccionado: " + genero);
+        let mujer = document.getElementById("mujer");
+        mujer.classList.add("seleccionadoMujer");
+
+        let hombre = document.getElementById("hombre");
+        hombre.classList.remove("seleccionadoHombre");
+    }
+
+    function siguientePagina(){
+        window.location.href = "seleccionaTemplate.html?id=" + id + "&genero=" + genero;
+    }
+</script>
+</body>
+</html>

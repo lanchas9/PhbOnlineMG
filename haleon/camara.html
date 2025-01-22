@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Haleon Photobooth</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 </head>
 <body>
     <div class="centrado" id="padre">
@@ -31,6 +36,8 @@
     let modoUpload = false;
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
+    const genero = urlParams.get('genero');
+    const idTemplate = urlParams.get('idTemplate');
 
     // async function boton2presionado(){
     //     if (camaraAbierta){
@@ -192,7 +199,7 @@
                 }
             }
 
-            //TOMA DE FOTOGRAFÍA VERSION 1 DECAPRITADED
+            
             /*
             if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
             navigator.mediaDevices.getUserMedia({video: true})
@@ -453,7 +460,7 @@
                     body: formData
                 };
                 try {
-                    let url = "https://mosaico.app:10801/uploadAI" + '?folder=haleon'
+                    let url = "https://mosaico.app:10801/uploadAIconTemplate" + '?genero=' + genero + '&idTemplate=' + idTemplate
                     let r = await fetch(url, options)
                     if(!r.ok){
                         resul.statusCode = r.status

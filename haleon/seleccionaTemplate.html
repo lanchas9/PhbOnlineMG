@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body onload="setup()">
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+            <div class="titulo">SELECCIONA AVATAR</div>
+            <div class="imageGallery" id="imageGallery">
+            </div>
+        </div>
+        <img src="continuar.png" alt="" srcset="" class="boton" onclick="siguientePagina()">
+    </div>
+    
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let id = urlParams.get('id');
+    let genero = urlParams.get('genero');
+    let limite = 10;
+    let idTemplate = "";
+    
+    async function setup() {
+        let path = window.location.origin + window.location.pathname
+        let pathURL = path.substring(0, path.lastIndexOf('/'));
+        let pathName = pathURL+ "/templates/";
+        let url = pathName + genero + "/";
+        console.log('URL:', url);
+        let data = await fetch(url);
+        let html = await data.text();
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html, 'text/html');
+        let links = doc.querySelectorAll('a');
+        let linksArray = [];
+        Array.from(links).forEach(link => {
+            if (link.href.includes('.jpg') == true) {
+                let filename = link.href.split('title="')[0];
+                linksArray.push(filename);
+            }
+        });
+        // Shuffle the array
+        for (let i = linksArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [linksArray[i], linksArray[j]] = [linksArray[j], linksArray[i]];
+        }
+        // Limit to 6 elements
+        linksArray = linksArray.slice(0, limite);
+        let imageGallery = document.getElementById('imageGallery');
+        linksArray.forEach(link => {
+            let img = document.createElement('img');
+            img.style.border = '10px solid transparent';
+            img.src = link;
+            img.className = 'image';
+            img.onclick = function() {
+                console.log('Clicked Image:', this.src);
+                // Remove red border from all images
+                document.querySelectorAll('.imageGallery img').forEach(image => {
+                    image.style.border = '10px solid transparent';
+                });
+                // Add red border to the clicked image
+                this.style.border = '10px solid #30EA03';
+                // Store the id of the clicked image
+                idTemplate = this.src.split('/').pop();
+                console.log('Selected Image ID:', idTemplate);
+            };
+            imageGallery.appendChild(img);
+        });
+        // console.log(linksArray);
+    }
+    
+    function siguientePagina() {
+        if (idTemplate == '') {
+            alert('Por favor selecciona una imagen');
+        } else {
+            window.location.href = `camara.html?genero=${genero}&idTemplate=${idTemplate}&id=${id}`;
+        }
+    }
+</script>
+</body>
+</html>
