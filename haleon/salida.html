@@ -22,7 +22,10 @@
         </a>
         <img src="repetir.png" alt="" srcset="" class="boton2" onclick="siguientePagina()">
     </div>
-    
+    <br>
+    <div class="centrado">
+        <img src="salir.png" alt="" srcset="" class="boton2" onclick="siguientePagina2()">
+    </div>
 <script>
     let id = "";
     let genero = "";
@@ -71,6 +74,9 @@
 
     function siguientePagina(){
         window.location.href = "seleccionaTemplate.html?id=" + id + "&genero=" + genero;
+    }
+    function siguientePagina2(){
+        window.location.href = "https://www.haleon.com"
     }
 </script>
 </body>
