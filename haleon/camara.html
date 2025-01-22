@@ -460,7 +460,8 @@
                     body: formData
                 };
                 try {
-                    let url = "https://mosaico.app:10801/uploadAIconTemplate" + '?genero=' + genero + '&idTemplate=' + idTemplate
+                    //TODO : - Hacer respaldos en folders con el correo electrónico o nombre del invitado de las fotos generadas.
+                    let url = "https://mosaico.app:10801/uploadAIconTemplate" + '?genero=' + genero + '&idTemplate=' + idTemplate + '&id=' + id
                     let r = await fetch(url, options)
                     if(!r.ok){
                         resul.statusCode = r.status
