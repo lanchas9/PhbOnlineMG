@@ -39,6 +39,7 @@
         // let preSet = "f_auto/fl_attachment/"
         
         await guardarEnServerAPI(id, url);
+        await respaldoEnServer(id,url);
         let path = "https://mosaico.app:4433/www/haleon/";
         let imagen = document.getElementById('imagen');
         imagen.src = path + url;
@@ -47,8 +48,27 @@
         // downloadIcon.href = path + preSet + url;
         downloadIcon.href = path + url;
         downloadIcon.download = "foto.jpg";
+    }
 
-        
+    async function respaldoEnServer(id, url){
+        let data = {
+            id: id,
+            url: url
+        };
+        await fetch('https://mosaico.app:10801/respaldoFotoInvitado', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
     }
 
     async function guardarEnServerAPI(id, url){
