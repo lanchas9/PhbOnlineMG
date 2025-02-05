@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Haleon Photobooth</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+    <div class="centrado">
+        <div id="camara" class="camara">
+            <img src="logo.svg" alt="" srcset="" class="logo2">
+            <div class="titulo">INSTRUCCIONES</div>
+            <div class="texto">
+                Bienvenido, a continuación te vamos a redirigir a nuestro Chatbot de WhatsApp para que puedas completar tu registro y enviar tu fotografía.
+            </div>
+
+        </div>
+        <img src="continuar.png" alt="" srcset="" class="boton" onclick="siguientePagina()">
+    </div>
+    
+<script>
+    function siguientePagina(){
+        window.location.href = "https://api.whatsapp.com/send?phone=12134938066&text=HALEON";
+    }
+</script>
+</body>
+</html>
