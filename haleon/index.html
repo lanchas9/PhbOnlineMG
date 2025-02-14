@@ -11,17 +11,35 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 </head>
+<style>
+    .botonGrandeCentroVerde{
+        background-color: #00A651;
+        color: white;
+        font-size: 30px;
+        padding: 2%;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 20px;
+        width: 60%;
+        margin-left: 18%;
+    }
+</style>
 <body>
     <div class="centrado">
         <div id="camara" class="camara">
             <img src="logo.svg" alt="" srcset="" class="logo">
         </div>
-        <img src="entrar.png" alt="" srcset="" class="boton" onclick="siguientePagina()">
+        <div class="botonGrandeCentroVerde" onclick="versionWeb()">Photbooth versión WebOnline</div>
+        <div class="botonGrandeCentroVerde" onclick="versionWhatsApp()">Photbooth versión WhatsApp</div>
     </div>
     
 <script>
-    function siguientePagina(){
+    function versionWeb(){
         window.location.href = "instrucciones.html";
+    }
+
+    function versionWhatsApp(){
+        window.location.href = "instrucciones2.html";
     }
 </script>
 </body>
